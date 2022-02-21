@@ -25,7 +25,13 @@ function App() {
 
   return (
     <div className="App">
-
+      <div>
+        {albums.map((unit) => (
+          <button className="button" onClick={() => OnClickHandler(unit)}>
+            {unit}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }
