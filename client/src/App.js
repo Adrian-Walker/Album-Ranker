@@ -1,27 +1,12 @@
 import './style.css';
-import { route } from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import React, { useState } from 'react';
 import Album from './Components/Album';
 import axios from 'axios'
-
-const album = {
-  Rap: [
-    { artist: '1st album', title: '', album: '', releaseYear: '', rating: '7' },
-    { artist: '1st album', title: '', album: '', releaseYear: '', rating: '7' }
-  ],
-
-  Country: [
-    { artist: '1st album', title: '', album: '', releaseYear: '', rating: '7' },
-    { artist: '1st album', title: '', album: '', releaseYear: '', rating: '7' }
-  ],
-
-  Soul: [
-    { artist: '1st album', title: '', album: '', releaseYear: '', rating: '7' },
-    { artist: '1st album', title: '', album: '', releaseYear: '', rating: '7' }
-  ],
-}
-
-// var albums = Object.keys(albumLibrary);
+import Day from './pages/Day';
+import Week from './pages/Week';
+import Month from './pages/Month';
+import Home from './pages/Home';
 
 
 
@@ -39,9 +24,14 @@ function App() {
 
   return (
     <div className="App">
-      <div>
-        <Album />
-      </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />}/>
+          <Route path="/day" element={<Day />} />
+          <Route path="/week" element={<Week />} />
+          <Route path="/month"  element={<Month />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
