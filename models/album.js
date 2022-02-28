@@ -3,6 +3,15 @@ const Schema = mongoose.Schema
 
 // Album Setup
 const albumSchema = new Schema({
+    artist: {
+        type: String,
+        required: true
+    },
+    albumImage: {
+        type: String,
+        required: true
+    },
+
     title: {
         type: String,
         required: true
@@ -17,6 +26,14 @@ const albumSchema = new Schema({
         type: String,
         required: true
     },
+
+    reviews: [
+        {
+            rating: {
+                type: String
+            }
+        }
+    ]
 
 })
 
