@@ -21,3 +21,17 @@ img {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
+
+.album_input {
+  text-align: center;
+}
+
+.album{
+  padding: 70px;
+  margin: 10px;
+}
+
+.albumImage{
+  height: 300px;
+  width: 300px;
+}

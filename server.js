@@ -16,6 +16,10 @@ app.use(morgan('dev'))
 // Get Request
 app.use("/api", albumRoutes)
 
+
+
 app.listen(9000, () => {
     console.log('The server is running on Port 9000')
 })
+
+ 

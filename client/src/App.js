@@ -1,12 +1,16 @@
 import './style.css';
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { Link, Routes, Route, BrowserRouter, generatePath, } from 'react-router-dom';
 import React, { useState } from 'react';
 import Album from './Components/Album';
 import axios from 'axios'
-import Day from './pages/Day';
-import Week from './pages/Week';
-import Month from './pages/Month';
+import SortByGenre from './pages/SortByGenre';
+import SortByYear from './pages/SortByYear';
 import Home from './pages/Home';
+import AddAlbum from './Components/AddAlbum';
+import { AlbumsContext } from './context/AlbumsContext';
+
+
+
 
 
 
@@ -14,9 +18,21 @@ function App() {
 
   const [newAlbum, setAlbum] = useState([])
 
-  function getAlbums() {
-    axios.get('/albums')
-      .then(res => setAlbum(res.data))
+
+
+  function addNewAlbum(newAlbum) {
+    axios.post("/api/albums", newAlbum)
+      .then(res =>
+        setAlbum(prevAlbum => [...prevAlbum, res.data])
+      )
+      .catch(err => console.log(err))
+  }
+
+  function deleteAlbum(albumId) {
+    axios.delete(`api/album/${albumId}`)
+      .then(res => {
+        setAlbum(prevAlbum => prevAlbum.filter(album => album._id !== albumId))
+      })
       .catch(err => console.log(err))
   }
 
@@ -25,12 +41,28 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <nav>
+          <ul>
+            <li><Link to="/">Top Albums</Link></li>
+            <li><Link to="SortByGenre">Sort By Genre</Link></li>
+            <li><Link to="SortByYear">Sort By Year</Link></li>
+          </ul>
+        </nav>
+
+        <AddAlbum submit={addNewAlbum} />
         <Routes>
-          <Route path="/" element={<Home />}/>
-          <Route path="/day" element={<Day />} />
-          <Route path="/week" element={<Week />} />
-          <Route path="/month"  element={<Month />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/SortByGenre" element={<SortByGenre />} />
+          <Route path="/SortByYear" element={<SortByYear />} />
         </Routes>
+
+        {
+          newAlbum.map(album =>
+            <Album
+              // {...album}
+              key={album._id}
+              deleteAlbum={deleteAlbum} album={album} />)
+        }
       </BrowserRouter>
     </div>
   );
