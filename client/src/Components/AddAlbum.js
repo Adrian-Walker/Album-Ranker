@@ -31,6 +31,7 @@ export default function AddAlbum(props) {
             <input
                 type="text"
                 name="title"
+                autoComplete="off"
                 value={inputs.title}
                 onChange={handleChange}
                 placeholder="Title" />
@@ -38,12 +39,14 @@ export default function AddAlbum(props) {
             <input
                 type="text"
                 name="genre"
+                autoComplete="off"
                 value={inputs.genre}
                 onChange={handleChange}
                 placeholder="Genre" />
             <input
                 type="text"
                 name="releaseYear"
+                autoComplete="off"
                 value={inputs.releaseYear}
                 onChange={handleChange}
                 placeholder="Release Year" />
@@ -51,6 +54,7 @@ export default function AddAlbum(props) {
             <input
                 type="text"
                 name="artist"
+                autoComplete="off"
                 value={inputs.artist}
                 onChange={handleChange}
                 placeholder="Artist" />
@@ -58,9 +62,10 @@ export default function AddAlbum(props) {
             <input
                 type="text"
                 name="albumImage"
+                autoComplete="off"
                 value={inputs.albumImage}
                 onChange={handleChange}
-                placeholder="Album Cover" />
+                placeholder="Copy Image Address" />
 
             <button>{props.btnText}Submit</button>
         </form>

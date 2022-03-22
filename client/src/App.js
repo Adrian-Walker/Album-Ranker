@@ -7,11 +7,7 @@ import SortByGenre from './pages/SortByGenre';
 import SortByYear from './pages/SortByYear';
 import Home from './pages/Home';
 import AddAlbum from './Components/AddAlbum';
-import { AlbumsContext } from './context/AlbumsContext';
-
-
-
-
+// import { AlbumsContext } from './context/AlbumsContext';
 
 
 function App() {
@@ -42,7 +38,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <nav>
-          <ul>
+          <ul className='nav'>
             <li><Link to="/">Top Albums</Link></li>
             <li><Link to="SortByGenre">Sort By Genre</Link></li>
             <li><Link to="SortByYear">Sort By Year</Link></li>

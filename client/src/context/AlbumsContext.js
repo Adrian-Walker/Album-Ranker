@@ -23,7 +23,7 @@ const AlbumsContextProvider = ({ children }) => {
       })
       .catch(err => console.log(err))
 
-    // Genre State
+    // Sort By Genre State
     axios.get("/api/albums")
       .then(data => {
         setAlbumsByGenre(data.data.sort((a, b) => {
