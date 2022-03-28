@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react'
 import axios from "axios"
+import { axiosInstance } from '../services/api'
 
 export const AlbumsContext = createContext()
 
@@ -8,23 +9,24 @@ const AlbumsContextProvider = ({ children }) => {
   const [albumsByYear, setAlbumsByYear] = useState([])
   const [albumsByGenre, setAlbumsByGenre] = useState([])
 
+
   //Top albums State
   useEffect(() => {
-    axios.get("/api/albums")
+    axiosInstance.get("/api/albums")//http://localhost:9000/api/albums
       .then(data => {
         setAlbums(data.data)
       })
       .catch(err => console.log(err))
 
     // Release Year State
-    axios.get("/api/albums")
+    axiosInstance.get("/api/albums")
       .then(data => {
         setAlbumsByYear(data.data.sort((a, b) => a.releaseYear - b.releaseYear))
       })
       .catch(err => console.log(err))
 
     // Sort By Genre State
-    axios.get("/api/albums")
+    axiosInstance.get("/api/albums")
       .then(data => {
         setAlbumsByGenre(data.data.sort((a, b) => {
           const genreA = a.genre.toUpperCase()
@@ -33,13 +35,12 @@ const AlbumsContextProvider = ({ children }) => {
           else if (genreB > genreA) return -1
           else return 0
         }))
-          .catch(err => console.log(err))
-      })
+      }).catch(err => console.log(err))
 
   }, [])
 
   function deleteAlbum(albumId) {
-    axios.delete(`api/albums/${albumId}`)
+    axiosInstance.delete(`api/albums/${albumId}`)
       .then(res => {
         setAlbums(prevAlbum => prevAlbum.filter(album => album._id !== albumId))
       })

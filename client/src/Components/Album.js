@@ -2,7 +2,6 @@ import React from "react";
 import Like from "./Like";
 
 function Album(props) {
-    console.log(props, "props")
 
     const { artist, title, genre, releaseYear, albumImage } = props//.album
 

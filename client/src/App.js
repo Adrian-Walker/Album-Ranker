@@ -7,6 +7,7 @@ import SortByGenre from './pages/SortByGenre';
 import SortByYear from './pages/SortByYear';
 import Home from './pages/Home';
 import AddAlbum from './Components/AddAlbum';
+import { axiosInstance } from './services/api';
 // import { AlbumsContext } from './context/AlbumsContext';
 
 
@@ -17,7 +18,7 @@ function App() {
 
 
   function addNewAlbum(newAlbum) {
-    axios.post("/api/albums", newAlbum)
+    axiosInstance.post("/api/albums", newAlbum)
       .then(res =>
         setAlbum(prevAlbum => [...prevAlbum, res.data])
       )
@@ -25,7 +26,7 @@ function App() {
   }
 
   function deleteAlbum(albumId) {
-    axios.delete(`api/album/${albumId}`)
+    axiosInstance.delete(`api/album/${albumId}`)
       .then(res => {
         setAlbum(prevAlbum => prevAlbum.filter(album => album._id !== albumId))
       })

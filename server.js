@@ -3,6 +3,7 @@ const express = require('express')
 const app = express()
 const morgan = require('morgan')
 const mongoose = require('mongoose')
+const cors = require("cors")
 const albumRoutes = require("./routes/albumRouter")
 const db = require("./config/connectDb")
 const PORT = process.env.PORT || 9000
@@ -13,6 +14,7 @@ db.once("open", () => {
 // Middleware
 app.use(express.json())
 app.use(morgan('dev'))
+app.use(cors())
 
 
 // Get Request
